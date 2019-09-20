@@ -31,7 +31,7 @@ class AdminController extends Controller
             'email' => 'required|email',
             'location' => 'required',
             'keyw' => 'required',
-            'logo' => 'required|image|mimes:jpg,jpeg,png,gif,svg'
+            'logo' => 'sometimes|image|mimes:jpg,jpeg,png,gif,svg'
         ],[
             'title.required' => 'Saytın başlığı boş olmamalıdır',
             'desc.required' => 'Saytın açıqlaması boş olmamalıdır',

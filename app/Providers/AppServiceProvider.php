@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Ayarlar;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,6 +25,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        view()->composer('frontend/*', function($view) {
+           $setting = Ayarlar::first();
+
+           $view->with('setting',$setting);
+        });
         Schema::defaultStringLength(191);
     }
 }
