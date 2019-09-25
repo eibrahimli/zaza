@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Elanlar extends Model
 {
@@ -13,5 +14,9 @@ class Elanlar extends Model
 
     public function cat() {
         return $this->belongsTo(Category::class,'category');
+    }
+
+    public function path() {
+        return url('elan/'.$this->id.'-'.Str::slug($this->title));
     }
 }

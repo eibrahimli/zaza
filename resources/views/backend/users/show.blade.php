@@ -151,6 +151,18 @@
                             {{ $errors->first('tip') }}
 
                             <div class="form-group">
+                                <label for="exampleSelect24" class="control-label col-sm-3">İstifadəçi Rütbəsi</label>
+                                    <div class="col-sm-10">
+                                        <select multiple="" name="level" class="form-control" id="exampleSelect24">
+                                            <option value="user" {{ $user->level == 'user' ? 'selected' : null }}>User</option>
+                                            <option value="moderator" {{ $user->level == 'moderator' ? 'selected' : null }}>Moderator</option>
+                                            <option value="admin" {{ $user->level == 'admin' ? 'selected' : null }}>Admin</option>
+                                        </select>
+                                    </div>
+                            </div>
+                            {{ $errors->first('level') }}
+
+                            <div class="form-group">
                                 <label for="exampleTextarea" class="control-label col-sm-2">Məlumat</label>
                                 <div class="col-sm-10">
                                     <textarea class="form-control" name="info" id="exampleTextarea" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 91px;">{{ old('info') ?? $user->info }}</textarea>

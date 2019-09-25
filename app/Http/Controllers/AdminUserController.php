@@ -54,6 +54,7 @@ class AdminUserController extends Controller
             'city' => 'required',
             'adress' => 'required',
             'info' => 'required',
+            'level' => 'required',
             'photo' => 'required|image|mimes:jpeg,jpg,png,gif,svg'
         ]);
         $data['password'] = Hash::make($data['password']);
@@ -104,6 +105,7 @@ class AdminUserController extends Controller
             'city' => 'required',
             'adress' => 'required',
             'info' => 'required',
+            'level' => 'required',
             'photo' => 'sometimes|image|mimes:jpg,jpeg,png,gif,svg'
         ]);
         if(empty($data['password'])):

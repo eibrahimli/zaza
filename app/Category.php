@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Category extends Model
 {
@@ -12,5 +13,9 @@ class Category extends Model
 
     public function elanlar() {
         return $this->hasMany(Elanlar::class);
+    }
+
+    public function path() {
+        return url('/kateqoriya/'.$this->id.'-'.Str::slug($this->az_name));
     }
 }

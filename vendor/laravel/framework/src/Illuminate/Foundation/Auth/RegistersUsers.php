@@ -2,6 +2,7 @@
 
 namespace Illuminate\Foundation\Auth;
 
+use App\Jobs\ResizeUsersImageJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
@@ -17,7 +18,7 @@ trait RegistersUsers
      */
     public function showRegistrationForm()
     {
-        return view('auth.register');
+        return view('frontend.register');
     }
 
     /**
@@ -57,6 +58,9 @@ trait RegistersUsers
      */
     protected function registered(Request $request, $user)
     {
-        //
+        if(Auth::check() && Auth::user()->level == 'admin' || Auth::user()->level == 'moderator')
+            return redirect(url('admin'));
+
+        return $this->redirectPath();
     }
 }

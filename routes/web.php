@@ -1,6 +1,6 @@
 <?php
 
-    Route::group(['prefix' => 'admin'], function () {
+    Route::group(['prefix' => 'admin', 'middleware' => 'onlyadmin'], function () {
 
         Route::get('/', function () {
             return view('backend.index');
@@ -44,7 +44,10 @@
         View::composer(['backend/*'], 'App\Http\Controllers\AdminController@shareMenuToAllViews');
     });
 
-    Route::get('/', 'SiteController@index');
+Route::get('/', 'SiteController@index');
+
+Route::get('contact', 'ContactFormController@index');
 
 
+Auth::routes();
 

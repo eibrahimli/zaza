@@ -6,22 +6,19 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RedirectIfAuthenticated
+class OnlyAdmin
 {
     /**
      * Handle an incoming request.
      *
      * @param  Request  $request
      * @param Closure $next
-     * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next)
     {
-        if (Auth::guard($guard)->check()) {
-            return back();
-        }
-
+        if(!Auth::check() || Auth::user()->level != 'admin' && Auth::user()->level != 'moderator')
+            return redirect(url('/'));
         return $next($request);
     }
 }

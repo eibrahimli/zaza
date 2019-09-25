@@ -189,20 +189,11 @@
                         <input type="hidden" name="page" value="search"/>
                         <div class="input-row">
                             <div class="input-4-col middlesearch">
-                                <select name="sCategory" id="sCategory" class="form-select-2"
+                                <select name="category" id="sCategory" class="form-select-2"
                                         data-placeholder="Kateqoriya Seçin...">
-                                    <option value="">Нет</option>
-                                    <option value="4">Daşınmaz əmlak</option>
-                                    <option value="2">Nəqliyyat</option>
-                                    <option value="110">Elektronika</option>
-                                    <!-- <option value="122">Перевозки</option> -->
-                                    <option value="8">İş</option>
-                                    <option value="119">Biznes</option>
-                                    <option value="118">Metal</option>
-                                    <option value="5">Tikinti</option>
-                                    <option value="123">Ev / Bağ</option>
-                                    <option value="115">Xidmətlər</option>
-
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->{ app()->getLocale().'_name'} }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="input-4-col middlesearch">
@@ -282,7 +273,7 @@
                     <!--Categories -->
                     <div class="category-inline">
                         @foreach($categories as $category)
-                            <a href="rabota.html" class="category-inline-item">
+                            <a href="{{ $category->path() }}" class="category-inline-item">
                                 <span class="category-inline-item__ico-wrp">
                                     <img src="{{ url('storage/'.$category->icon) }}" alt="{{ $category->az_name }}">
                                 </span>
@@ -312,19 +303,16 @@
                                 </a>
                                 <div class="item__ins" id="colorized">
                                     <div class="item__middle-desc">
-                                        <a href="podarki/prinadlezhnosti-dlya-spirtnogo-i-aksessyary/globys-bar-napolnyj-so-stolikom-zoffoli_i822.html"
+                                        <a href="{{ $vipelan->cat->path() }}"
                                            class="item__cat">
                                             <img src="{{ url('storage/'.$vipelan->cat->icon) }}">
                                         </a>
                                         <span class="item__date">июля 4, 2019</span>
-                                        <a href="podarki/prinadlezhnosti-dlya-spirtnogo-i-aksessyary/globys-bar-napolnyj-so-stolikom-zoffoli_i822.html"
-                                           class="item__title">Глобус бар напольный со столиком Zoffoli</a>
+                                        <a href="{{ $vipelan->path() }}"
+                                           class="item__title">{{ strlen($vipelan->title) > 20 ? mb_substr(0,20,$vipelan->title)."..." : $vipelan->title}}</a>
                                         <div class="item__text">
-                                            <div>Глобус бар - это стильная, изысканная и функциональная вещь. Он
-                                                прекрасно подходит не только для хранения спиртных напитков, но и станет
-                                                прекрасным дополнением к Вашему интерьеру. На сфере карта 16 века. Сфера
-                                                вращается как в открытом так и в закрытом виде. Минимум деталей и
-                                                безупречный стиль, ручна...
+                                            <div>
+                                                {{ strlen($vipelan->info) > 68 ? mb_substr(0,68,$vipelan->info)."..." : $vipelan->info}}
                                             </div>
                                         </div>
                                         <strong class="item__price">10500.00 AZN</strong>

@@ -16,4 +16,6 @@ class SiteController extends Controller
 
         return view('frontend.index',compact('vipelanlar','sonelanlar','categories'));
     }
+
+
 }
