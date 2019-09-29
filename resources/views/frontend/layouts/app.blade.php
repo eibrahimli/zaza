@@ -8,6 +8,8 @@
 
     <title>@yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Доска бесплатных объявлений Delovoy - это сайт где можно без регистрации разместить объявление бесплатно в неограниченном количестве и посмотреть бесплатные частные объявления" />
+    <meta name="keywords" content="Доска бесплатных объявлений, доска объявлений, сайт бесплатных объявлений, Деловой, delovoy, частные объявления, бесплатные объявления, delovoy.net, Россия, Украина. Белоруссия" />
     <meta http-equiv="Cache-Control" content="no-cache" />
     <meta http-equiv="Expires" content="Fri, Jan 01 1970 00:00:00 GMT" />
     <style type="text/css">
@@ -19,29 +21,17 @@
     <link rel="stylesheet" href="{{ asset('frontend/themes/violet/css/swiper.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/themes/violet/css/photoswipe.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/themes/violet/css/main.css') }}">
-
-
-
-
-    <meta name="generator" content="Osclass 3.8.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="canonical" href="{{ url('register') }}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    @yield('css')
     <style type="text/css">#colorized,.colorized{background:#ff8040!important;}</style>
-    <style type="text/css">button,input.submit,#btn_subscribe,.searchPaginationSelected,.tag-link.active,.searchbutton,.flashmessage-warning,.flashmessage-info, .flashmessage-ok,.ui-slider-handle,.qq-upload-button,.edit-link:hover,.del-link:hover,#select-country__wrap .dropdown-wrapper,.btn-blue:hover,.lang-list__ul,.submit-search,.item__cat,.about-item__ico-wrp span,.item-inline__cat,.btn-pink,.item-tab-control a.active,.item-tab-control a:hover,.sort-btn.active {background-color:#7C4D9D!important;}a:hover,.item__favourites,.btn2,.breadcrumb a,.load-img-item span a,.profile-demo a,.options-form a,.modal a,.publish a{color:#7C4D9D!important;}.lang-list__ul,.item-tab-control a.active,.item-tab-control a:hover,.flashmessage-warning,..edit-link:hover,.del-link:hover,.sort-btn.active {border-color:#7C4D9D!important;}@media only screen and (max-width: 999px) {nav ul {border-color:#7c4d9d!important;background-color:#7C4D9D!important;}}button:hover,input.submit:hover,.submit-search:hover,.qq-upload-button:hover,.ui-slider-handle:hover,#btn_subscribe:hover,.searchbutton:hover ,nav ul a:hover,.btn-blue,.lang-list__ul a:hover,.item__cat:hover,.about-item__ico-wrp:hover span,.item-inline__cat:hover,.btn-pink:hover{background-color: #7C4D9D!important;}.btn-publish{background-color: #7C4D9D!important;}.btn-publish:hover{background-color: #34D523!important;}</style><link href="../oc-content/plugins/uMessages/assets/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('/plugins/uMessages/assets/css/widgets.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('/plugins/hfield/css/style.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('/plugins/rupayments/css/ultimate.css') }}" rel="stylesheet" type="text/css" />
-    <script src="{{ asset('frontend/themes/violet/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('frontend/plugins/rupayments/js/ultimate.js') }}"></script>
-    <script src="https://kit.fontawesome.com/fea2465f5c.js" crossorigin="anonymous"></script>
-    <script src="{{ asset('frontend/plugins/watchlist/js/watchlist.js') }}"></script>
-    <script src="{{ asset('frontend/themes/violet/js/jquery-ui.min.js') }}"></script>
-    <script src="{{ asset('frontend/themes/violet/js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('frontend/themes/violet/js/main.js') }}"></script>
-    <script src="{{ asset('frontend/themes/violet/js/select2.min.js') }}"></script>
-    <script src="{{ asset('frontend/themes/violet/js/date.js') }}"></script>
-    <script src="{{ asset('frontend/themes/violet/js/jquery.validate.min.js') }}"></script>
-    <script src="{{ asset('frontend/plugins/uMessages/assets/js/widgets.js') }}"></script>
-
+    <style type="text/css">button,input.submit,#btn_subscribe,.searchPaginationSelected,.tag-link.active,.searchbutton,.flashmessage-warning,.flashmessage-info, .flashmessage-ok,.ui-slider-handle,.qq-upload-button,.edit-link:hover,.del-link:hover,#select-country__wrap .dropdown-wrapper,.btn-blue:hover,.lang-list__ul,.submit-search,.item__cat,.about-item__ico-wrp span,.item-inline__cat,.btn-pink,.item-tab-control a.active,.item-tab-control a:hover,.sort-btn.active {background-color:#7C4D9D!important;}a:hover,.item__favourites,.btn2,.breadcrumb a,.load-img-item span a,.profile-demo a,.options-form a,.modal a,.publish a{color:#7C4D9D!important;}.lang-list__ul,.item-tab-control a.active,.item-tab-control a:hover,.flashmessage-warning,..edit-link:hover,.del-link:hover,.sort-btn.active {border-color:#7C4D9D!important;}@media only screen and (max-width: 999px) {nav ul {border-color:#7c4d9d!important;background-color:#7C4D9D!important;}}button:hover,input.submit:hover,.submit-search:hover,.qq-upload-button:hover,.ui-slider-handle:hover,#btn_subscribe:hover,.searchbutton:hover ,nav ul a:hover,.btn-blue,.lang-list__ul a:hover,.item__cat:hover,.about-item__ico-wrp:hover span,.item-inline__cat:hover,.btn-pink:hover{background-color: #7C4D9D!important;}.btn-publish{background-color: #7C4D9D!important;}.btn-publish:hover{background-color: #34D523!important;}
+    </style>
+    <link href="{{ asset('frontend/plugins/uMessages/assets/css/materialdesignicons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend/plugins/uMessages/assets/css/widgets.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend/plugins/hfield/css/style.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend/plugins/rupayments/css/ultimate.css') }}" rel="stylesheet" type="text/css" />
     <script>
 
         $.datepicker.regional['custom'] = { // Default regional settings
@@ -62,62 +52,8 @@
             yearSuffix: '' // Additional text to append to the year in the month headers
         };
     </script>
-    <meta name="robots" content="noindex, nofollow" />
-    <meta name="googlebot" content="noindex, nofollow" />
 </head>
 <body>
-<script>
-    $(document).ready(function(){
-        // Code for form validation
-        $("form[name=register]").validate({
-            rules: {
-                s_name: {
-                    required: true
-                },
-                s_email: {
-                    required: true,
-                    email: true
-                },
-                s_password: {
-                    required: true,
-                    minlength: 5
-                },
-                s_password2: {
-                    required: true,
-                    minlength: 5,
-                    equalTo: "#s_password"
-                }
-            },
-            messages: {
-                s_name: {
-                    required: "Başlıq: bu sahə boş ola bilməz."
-                },
-                s_email: {
-                    required: "E-mail: bu sahə boş ola bilməz.",
-                    email: "Yanlış e-mail adresi."
-                },
-                s_password: {
-                    required: "Şifrə: bu sahə boş ola bilməz.",
-                    minlength: "Şifrə: şifrə 5 simvoldan az ola bilməz."
-                },
-                s_password2: {
-                    required: "Şifrəni təkrar daxil et: bu sahə boş ola bilməz.",
-                    minlength: "Şifrə  təkrar daxil et: şifrə 5 simvoldan az ola bilməz.",
-                    equalTo: "Şifrələr uyğun deyil."
-                }
-            },
-            errorLabelContainer: "#error_list",
-            wrapper: "li",
-            invalidHandler: function(form, validator) {
-                $('html,body').animate({ scrollTop: $('h1').offset().top }, { duration: 250, easing: 'swing'});
-            },
-            submitHandler: function(form){
-                $('button[type=submit], input[type=submit]').attr('disabled', 'disabled');
-                form.submit();
-            }
-        });
-    });
-</script>
 <!-- container -->
 <div class="wrapper">
     <div class="wrapper-in">
@@ -126,7 +62,7 @@
                 <div class="container">
                     <div class="top-bar__logo-wrp">
                         <a href="{{ url('/') }}">
-                            <img border="0" alt="Доска объявлений Delovoy" src="frontend/themes/violet/img/logo2.jpeg"/>
+                            <img border="0" alt="{{ $setting->title }}" src="{{ url('frontend/themes/violet/img/logo2.jpeg') }}"/>
                         </a>
                     </div>
                     <!-- Menu -->
@@ -176,6 +112,7 @@
                 <!-- content -->
                 @yield('content')
             </div>
+            @yield('showElan')
             <!-- content -->
         </div>
     </div>
@@ -219,6 +156,22 @@
         </div>
     </div>
 </footer>
+
+<script src="{{ asset('frontend/themes/violet/js/jquery.min.js') }}"></script>
+<script src="{{ asset('frontend/plugins/rupayments/js/ultimate.js') }}"></script>
+<script src="https://kit.fontawesome.com/fea2465f5c.js" crossorigin="anonymous"></script>
+<script src="{{ asset('frontend/plugins/watchlist/js/watchlist.js') }}"></script>
+<script src="{{ asset('frontend/themes/violet/js/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('frontend/themes/violet/js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('frontend/themes/violet/js/main.js') }}"></script>
+<script src="{{ asset('frontend/themes/violet/js/select2.min.js') }}"></script>
+<script src="{{ asset('frontend/themes/violet/js/date.js') }}"></script>
+<script src="{{ asset('frontend/themes/violet/js/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('frontend/plugins/uMessages/assets/js/widgets.js') }}"></script>
+
+@yield('something')
+
+@yield('js')
 </body>
 
 </html>

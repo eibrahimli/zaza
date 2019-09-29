@@ -1,7 +1,7 @@
 @extends('backend.layout.app')
 
-@section('title', 'Yeni kateqoriya əlavə et')
-@section('whereiam', 'Yeni elan kateqoriyası əlavə et')
+@section('title', 'Kateqoriya redaktə et')
+@section('whereiam', 'Kateqoriya redaktə et')
 
 @section('content')
 
@@ -24,7 +24,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="inputName" class="control-label">Kateqoriya Adı ( Azəricə )</label>
-                                <input type="text" required pattern="[A-Za-zŞÜÖĞÇİşüöğç]{2,}" title="Ən azı 2 simvol olmalıdır.." value="{{ old('az_name') ?? $category->az_name }}" name="az_name" class="form-control" id="inputName" placeholder="Azəricə kateqoriya adını daxil edin..">
+                                <input type="text" required pattern="[A-Za-zŞÜÖĞƏÇİşüöğçıə ]{2,}" title="Ən azı 2 simvol olmalıdır.." value="{{ old('az_name') ?? $category->az_name }}" name="az_name" class="form-control" id="inputName" placeholder="Azəricə kateqoriya adını daxil edin..">
                             </div>
                             @error('az_name')
                             <div class="alert alert-warning" role="alert">
@@ -36,7 +36,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="inputName" class="control-label">Kateqoriya Adı ( Rusca )</label>
-                                <input type="text" required pattern="[A-Za-zŞÜÖĞÇşüöğç]{2,}" title="Ən azı 2 simvol olmalıdır.." value="{{ old('ru_name') ?? $category->ru_name }}" name="ru_name" class="form-control" id="inputName" placeholder="Rusca kateqoriya adını daxil edin..">
+                                <input type="text" required pattern="[A-Za-zŞÜÖĞƏÇİşüöğçıə ]{2,}" title="Ən azı 2 simvol olmalıdır.." value="{{ old('ru_name') ?? $category->ru_name }}" name="ru_name" class="form-control" id="inputName" placeholder="Rusca kateqoriya adını daxil edin..">
                             </div>
                             @error('ru_name')
                             <div class="alert alert-warning" role="alert">

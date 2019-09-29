@@ -102,7 +102,7 @@ class ElanlarController extends Controller
         $galeries = Collection::wrap($request->file('galery'));
 
         $galeries->each(function ($image) use ($elan) {
-            $galery = ElanlarGalery::create(['elanid' => $elan->id,'photo' => '']);
+            $galery = ElanlarGalery::create(['elanlar_id' => $elan->id,'photo' => '']);
             $galery->update([
                 'photo' => $image->store('uploads/elanlar/gallery', 'public')
             ]);
@@ -124,7 +124,7 @@ class ElanlarController extends Controller
     public function show(Elanlar $elan)
     {
         $category = Category::orderby('id', 'desc')->get();
-        $photos = ElanlarGalery::orderby('id', 'desc')->where('elanid',$elan->id)->paginate(4);
+        $photos = ElanlarGalery::orderby('id', 'desc')->where('elanlar_id',$elan->id)->paginate(4);
         return view('backend.elanlar.show',compact('elan','photos','category'));
     }
 
@@ -176,7 +176,7 @@ class ElanlarController extends Controller
             $galeries = Collection::wrap($request->file('gallery'));
 
             $galeries->each(function ($image) use ($elan) {
-                $galery = ElanlarGalery::create(['elanid' => $elan->id,'photo' => '']);
+                $galery = ElanlarGalery::create(['elanlar_id' => $elan->id,'photo' => '']);
                 $galery->update([
                     'photo' => $image->store('uploads/elanlar/gallery', 'public')
                 ]);
@@ -205,7 +205,7 @@ class ElanlarController extends Controller
             Storage::delete('public/'.$galery->photo);
         endforeach;
 
-        ElanlarGalery::where('elanid','5')->delete();
+        ElanlarGalery::where('elanlar_id','5')->delete();
 
         $elan->delete($elan);
 

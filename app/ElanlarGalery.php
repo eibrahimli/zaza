@@ -9,6 +9,10 @@ class ElanlarGalery extends Model
     protected $table = 'elanlars_gallery';
 
     protected $fillable = [
-        'elanid', 'photo',
+        'elanlar_id', 'photo',
     ];
+
+    public function elanlar() {
+        return $this->belongsTo(Elanlar::class);
+    }
 }

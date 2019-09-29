@@ -47,6 +47,8 @@
 Route::get('/', 'SiteController@index');
 
 Route::get('contact', 'ContactFormController@index');
+Route::post('contact', 'ContactFormController@create');
+Route::get('elan/{elan}-{slug}','SiteController@show');
 
 
 Auth::routes();

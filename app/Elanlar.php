@@ -16,6 +16,10 @@ class Elanlar extends Model
         return $this->belongsTo(Category::class,'category');
     }
 
+    public function eg() {
+        return $this->hasMany(ElanlarGalery::class);
+    }
+
     public function path() {
         return url('elan/'.$this->id.'-'.Str::slug($this->title));
     }

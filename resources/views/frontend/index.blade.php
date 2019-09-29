@@ -188,32 +188,20 @@
                     <form class="nocsrf form" action="index.php" method="post">
                         <input type="hidden" name="page" value="search"/>
                         <div class="input-row">
+                            <div style="visibility: hidden" class="input-4-col middlesearch">
+                                    <select style="display:none;" name="category" id="sCategory" class="form-select-2"
+                                    data-placeholder="Kateqoriya Seçin...">
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->{ app()->getLocale().'_name'} }}</option>
+                                        @endforeach
+                                    </select>
+                            </div>
                             <div class="input-4-col middlesearch">
                                 <select name="category" id="sCategory" class="form-select-2"
                                         data-placeholder="Kateqoriya Seçin...">
                                     @foreach($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->{ app()->getLocale().'_name'} }}</option>
                                     @endforeach
-                                </select>
-                            </div>
-                            <div class="input-4-col middlesearch">
-
-                                <div class="large-12 columns">
-                                    <select name="sRegion" id="sRegion" class="form-select-2"
-                                            data-placeholder="Şəhər seçin ...">
-                                        <option value="">Нет</option>
-                                        <option value="782895"> Bakı</option>
-                                        <option value="781839"> Sumqayıt</option>
-                                        <option value="781840"> Gəncə</option>
-                                        <option value="781841"> Lənkəran</option>
-
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="input-4-col middlesearch">
-                                <select name="sCity" id="sCity" class="form-select-2"
-                                        data-placeholder="Bölgə Seçin ...">
-                                    <option value="">Нет</option>
                                 </select>
                             </div>
                             <div class="input-4-col middlesearch dislast">
@@ -399,7 +387,7 @@
                 <div class="footer__contacts">
                         <span><i class="place-white"></i>{{ $setting->location }}</span>
                     <span class="phone-inline"><i class="phone-ico"></i>{{ $setting->tel }}</span>
-                    <a href="mailto:info@delovoy.net" class="mail-link"><i class="mail-ico"></i>{{ $setting->email }}</a>
+                    <a href="mailto:{{ $setting->email }}" class="mail-link"><i class="mail-ico"></i>{{ $setting->email }}</a>
                     <ul class="social-list">
                         <li><a href="{{ explode('|||',$setting->social)[0] }}" target="_blank" class="fc-link"></a></li>
                         <li style="padding-top: 5px;"><a href="{{ explode('|||',$setting->social)[1] }}" target="_blank"><i style="padding-bottom: 5px;" class="fab fa-instagram"></i> </a></li>

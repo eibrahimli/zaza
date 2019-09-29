@@ -15,7 +15,7 @@ class CreateElanlarsGallery extends Migration
     {
         Schema::create('elanlars_gallery', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('elanid');
+            $table->integer('elanlar_id');
             $table->string('photo');
             $table->timestamps();
         });
