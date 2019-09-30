@@ -25,7 +25,16 @@
     <link rel="canonical" href="{{ url('register') }}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     @yield('css')
-    <style type="text/css">#colorized,.colorized{background:#ff8040!important;}</style>
+    <style type="text/css">
+        #colorized,.colorized{background:#ff8040!important;}
+        a{
+            text-decoration: none !important;
+        }
+        .footer-main a, .footer-page a{
+            text-decoration: none !important;
+            color: #fff;
+        }
+    </style>
     <style type="text/css">button,input.submit,#btn_subscribe,.searchPaginationSelected,.tag-link.active,.searchbutton,.flashmessage-warning,.flashmessage-info, .flashmessage-ok,.ui-slider-handle,.qq-upload-button,.edit-link:hover,.del-link:hover,#select-country__wrap .dropdown-wrapper,.btn-blue:hover,.lang-list__ul,.submit-search,.item__cat,.about-item__ico-wrp span,.item-inline__cat,.btn-pink,.item-tab-control a.active,.item-tab-control a:hover,.sort-btn.active {background-color:#7C4D9D!important;}a:hover,.item__favourites,.btn2,.breadcrumb a,.load-img-item span a,.profile-demo a,.options-form a,.modal a,.publish a{color:#7C4D9D!important;}.lang-list__ul,.item-tab-control a.active,.item-tab-control a:hover,.flashmessage-warning,..edit-link:hover,.del-link:hover,.sort-btn.active {border-color:#7C4D9D!important;}@media only screen and (max-width: 999px) {nav ul {border-color:#7c4d9d!important;background-color:#7C4D9D!important;}}button:hover,input.submit:hover,.submit-search:hover,.qq-upload-button:hover,.ui-slider-handle:hover,#btn_subscribe:hover,.searchbutton:hover ,nav ul a:hover,.btn-blue,.lang-list__ul a:hover,.item__cat:hover,.about-item__ico-wrp:hover span,.item-inline__cat:hover,.btn-pink:hover{background-color: #7C4D9D!important;}.btn-publish{background-color: #7C4D9D!important;}.btn-publish:hover{background-color: #34D523!important;}
     </style>
     <link href="{{ asset('frontend/plugins/uMessages/assets/css/materialdesignicons.min.css') }}" rel="stylesheet" type="text/css" />
@@ -98,14 +107,13 @@
             </div>
             <!--/.  Menu -->
         </header>
-        <div class="container">
+        <div class="container" style="margin-top: 40px;">
 
-            <!--<ul class="breadcrumb">
-                <li class="first-child" itemscope itemtype="http://data-vocabulary.org/Breadcrumb" ><a href="{{ url('/') }}" itemprop="url"><span itemprop="title">Zaza.az - Elan Saytı</span></a></li>
+{{--            <ul class="breadcrumb">--}}
+{{--                <li class="first-child" itemscope itemtype="http://data-vocabulary.org/Breadcrumb" ><a href="{{ url('/') }}" itemprop="url"><span itemprop="title">Zaza.az - Elan Saytı</span></a></li>--}}
 
-                <li class="last-child" itemscope itemtype="http://data-vocabulary.org/Breadcrumb" > &raquo; <span itemprop="title">Yeni İstifadəçi Yarat</span></li>
-            </ul>
-            -->
+{{--                <li class="last-child" itemscope itemtype="http://data-vocabulary.org/Breadcrumb" > &raquo; <span itemprop="title">Yeni İstifadəçi Yarat</span></li>--}}
+{{--            </ul>--}}
             <div class="container">
                 <div class="forcemessages-inline">
                 </div>
@@ -141,13 +149,13 @@
         <div class="container">
             <div class="footer-main__logo">
                 <a href="index.html"><img border="0" alt="Доска объявлений Delovoy"
-                                          src="frontend/themes/violet/img/logo.jpeg"/></a>
+                                          src="{{ asset('frontend/themes/violet/img/logo.jpeg') }}"/></a>
             </div>
 
             <div class="footer__contacts">
                 <span><i class="place-white"></i>{{ $setting->location }}</span>
                 <span class="phone-inline"><i class="phone-ico"></i>{{ $setting->tel }}</span>
-                <a href="mailto:info@delovoy.net" class="mail-link"><i class="mail-ico"></i>{{ $setting->email }}</a>
+                <a href="mailto:{{ $setting->email }}" class="mail-link"><i class="mail-ico"></i>{{ $setting->email }}</a>
                 <ul class="social-list">
                     <li><a href="{{ explode('|||',$setting->social)[0] }}" target="_blank" class="fc-link"></a></li>
                     <li style="padding-top: 5px;"><a href="{{ explode('|||',$setting->social)[1] }}" target="_blank"><i style="padding-bottom: 5px;" class="fab fa-instagram"></i> </a></li>

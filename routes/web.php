@@ -49,7 +49,8 @@ Route::get('/', 'SiteController@index');
 Route::get('contact', 'ContactFormController@index');
 Route::post('contact', 'ContactFormController@create');
 Route::get('elan/{elan}-{slug}','SiteController@show');
-
+Route::get('elanlar', 'SiteController@elanlar');
+Route::post('axtar', 'SiteController@elanAxtar');
 
 Auth::routes();
 
