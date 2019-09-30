@@ -1,6 +1,9 @@
 <?php
 
-    Route::group(['prefix' => 'admin', 'middleware' => 'onlyadmin'], function () {
+use GuzzleHttp\Psr7\Request;
+use function foo\func;
+
+Route::group(['prefix' => 'admin', 'middleware' => 'onlyadmin'], function () {
 
         Route::get('/', function () {
             return view('backend.index');
@@ -49,8 +52,10 @@ Route::get('/', 'SiteController@index');
 Route::get('contact', 'ContactFormController@index');
 Route::post('contact', 'ContactFormController@create');
 Route::get('elan/{elan}-{slug}','SiteController@show');
-Route::get('elanlar', 'SiteController@elanlar');
-Route::post('axtar', 'SiteController@elanAxtar');
+Route::get('elanlar', 'SiteController@elanlar')->name('elanlar');
+Route::get('elan/create', 'SiteController@elanCreate')->name('elanlar.create');
+Route::any('axtar', 'SiteController@elanAxtar');
+Route::get('elanlar/{asc}','SiteController@elanlarAsc')->name('elanlar.asc');
 
 Auth::routes();
 

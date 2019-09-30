@@ -170,7 +170,7 @@
                     <div class="top-bar__action">
                         <a href="index.html" class="short-search-trigger"><i class="search-ico"></i></a>
 
-                        <a href="item/new.html" class="btn-publish upcase"><strong>Elan Yerləşdir</strong></a>
+                        <a href="{{ route('elanlar.create') }}" class="btn-publish upcase"><strong>Elan Yerləşdir</strong></a>
                     </div>
                 </div>
             </div>

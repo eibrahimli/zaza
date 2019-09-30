@@ -28,11 +28,18 @@ class SiteController extends Controller
     public function elanlar()
     {
         $categories = Category::orderby('id','desc')->get();
-        $elanlar = Elanlar::where('status', 1)->orderby('id', 'desc')->paginate(1);
+        $elanlar = Elanlar::where('status', 1)->orderby('id', 'desc')->paginate(18);
         return view('frontend.elanlar.index',compact('elanlar','categories'));
     }
 
-    public function elanAxtar(Request $request) {
+    public function elanlarAsc() {
+        $elanlar = Elanlar::where('status', 1)->orderby('id', 'asc')->paginate(18);
+        $categories = $this->getCategories();
+        return view('frontend.elanlar.index',compact('elanlar','categories'));
+    }
+
+    public function elanAxtar(Request $request)
+    {
         $data = $request->validate([
             'title' => 'sometimes|nullable',
             'category' => 'sometimes|nullable',
@@ -41,17 +48,38 @@ class SiteController extends Controller
             'max' => 'sometimes|nullable',
         ]);
 
-        dd($data);
+        $elan = (new Elanlar())->newQuery();
 
-        $elanlar = DB::table('elanlars')
-            ->where('title', 'like', '%'.$request->title.'%')
-            ->where('category',$request->category)
-            ->where('city', $request->city)
-            ->whereBetween('price', [$request->min, $request->max])
-            ->get();
+        $categories = Category::orderby('id','desc')->get();
 
-        dd($elanlar);
-        ;
+        if($request->title != null) {
+            $elan->orWhere('title', 'like', '%'.$request->title.'%');
+        }
+        if($request->category != null) {
+            $elan->where('category',$request->category);
+        }
+        if($request->city != null) {
+            $elan->where('city',$request->city);
+        }
+        if($request->min != null && $request->max != null) {
+            $elan->whereBetween('price',[$request->min,$request->max]);
+        }
+
+        $elanlar = $elan->paginate(18)->appends(['title'=>$request->title]);
+
+        return view('frontend.elanlar.search',compact('elanlar','categories'));
+
     }
+
+    public function elanCreate()
+    {
+
+        return view('frontend.elanlar.create');
+    }
+
+    private function getCategories() {
+        return Category::orderby('id','desc')->get();
+    }
+
 
 }

@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title',$setting->title.' | '.'Bütün Elanlar')
+@section('title',$setting->title.' | '.'Axtarılan Elanlar')
 
 @section('content')
 
@@ -48,26 +48,22 @@
             </form>
         </aside>
         <div class="col-main">
+            <div class="tags">
+            </div>
             <div class="sort-wrp">
                 <div class="sort-type">
                     <a href="{{ url()->current() }}" style="text-decoration: none" class="sort-btn all active">Bütün</a>
-                    <select name="forma" onchange="location = this.value;">
-                        <option {{ route('elanlar') == url()->current() ? 'selected' : null }} value="{{ url('elanlar') }}">
-                            Yenidən köhnəyə
-                        </option>
-                        <option {{ route('elanlar.asc','asc') == url()->current() ? 'selected' : null }} value="{{ route('elanlar.asc','asc') }}">Köhnədən yeniyə
-                        </option>
-                    </select>
                 </div>
-
+                <!-- Sort View
 
                 <div class="sort-view">
                     <div class="change-view">
-                        <a href="javascript:void()" class="change-view__table active"></a>
+                        <a href="" class="change-view__table active"></a>
+                        <a href="" class="change-view__inline "></a>
                     </div>
                 </div>
 
-
+                -->
             </div>
 
             <div class="board-list board-list--ins">

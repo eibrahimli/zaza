@@ -21,9 +21,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/themes/violet/css/swiper.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/themes/violet/css/photoswipe.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/themes/violet/css/main.css') }}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="canonical" href="{{ url('register') }}"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     @yield('css')
     <style type="text/css">
         #colorized,.colorized{background:#ff8040!important;}
@@ -35,8 +33,7 @@
             color: #fff;
         }
     </style>
-    <style type="text/css">button,input.submit,#btn_subscribe,.searchPaginationSelected,.tag-link.active,.searchbutton,.flashmessage-warning,.flashmessage-info, .flashmessage-ok,.ui-slider-handle,.qq-upload-button,.edit-link:hover,.del-link:hover,#select-country__wrap .dropdown-wrapper,.btn-blue:hover,.lang-list__ul,.submit-search,.item__cat,.about-item__ico-wrp span,.item-inline__cat,.btn-pink,.item-tab-control a.active,.item-tab-control a:hover,.sort-btn.active {background-color:#7C4D9D!important;}a:hover,.item__favourites,.btn2,.breadcrumb a,.load-img-item span a,.profile-demo a,.options-form a,.modal a,.publish a{color:#7C4D9D!important;}.lang-list__ul,.item-tab-control a.active,.item-tab-control a:hover,.flashmessage-warning,..edit-link:hover,.del-link:hover,.sort-btn.active {border-color:#7C4D9D!important;}@media only screen and (max-width: 999px) {nav ul {border-color:#7c4d9d!important;background-color:#7C4D9D!important;}}button:hover,input.submit:hover,.submit-search:hover,.qq-upload-button:hover,.ui-slider-handle:hover,#btn_subscribe:hover,.searchbutton:hover ,nav ul a:hover,.btn-blue,.lang-list__ul a:hover,.item__cat:hover,.about-item__ico-wrp:hover span,.item-inline__cat:hover,.btn-pink:hover{background-color: #7C4D9D!important;}.btn-publish{background-color: #7C4D9D!important;}.btn-publish:hover{background-color: #34D523!important;}
-    </style>
+    <style type="text/css">button,input.submit,#btn_subscribe,.searchPaginationSelected,.tag-link.active,.searchbutton,.flashmessage-warning,.flashmessage-info, .flashmessage-ok,.ui-slider-handle,.qq-upload-button,.edit-link:hover,.del-link:hover,#select-country__wrap .dropdown-wrapper,.btn-blue:hover,.lang-list__ul,.submit-search,.item__cat,.about-item__ico-wrp span,.item-inline__cat,.btn-pink,.item-tab-control a.active,.item-tab-control a:hover,.sort-btn.active {background-color:#7C4D9D!important;}a:hover,.item__favourites,.btn2,.breadcrumb a,.load-img-item span a,.profile-demo a,.options-form a,.modal a,.publish a{color:#7C4D9D!important;}.lang-list__ul,.item-tab-control a.active,.item-tab-control a:hover,.flashmessage-warning,..edit-link:hover,.del-link:hover,.sort-btn.active {border-color:#7C4D9D!important;}@media only screen and (max-width: 999px) {nav ul {border-color:#7c4d9d!important;background-color:#7C4D9D!important;}}button:hover,input.submit:hover,.submit-search:hover,.qq-upload-button:hover,.ui-slider-handle:hover,#btn_subscribe:hover,.searchbutton:hover ,nav ul a:hover,.btn-blue,.lang-list__ul a:hover,.item__cat:hover,.about-item__ico-wrp:hover span,.item-inline__cat:hover,.btn-pink:hover{background-color: #7C4D9D!important;}.btn-publish{background-color: #7C4D9D!important;}.btn-publish:hover{background-color: #34D523!important;}</style>
     <link href="{{ asset('frontend/plugins/uMessages/assets/css/materialdesignicons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/plugins/uMessages/assets/css/widgets.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/plugins/hfield/css/style.css') }}" rel="stylesheet" type="text/css" />
@@ -101,7 +98,7 @@
                     <div class="top-bar__action">
                         <a href="index.html" class="short-search-trigger"><i class="search-ico"></i></a>
 
-                        <a href="item/new.html" class="btn-publish upcase"><strong>Elan Yerləşdir</strong></a>
+                        <a href="{{ route('elanlar.create') }}" class="btn-publish upcase"><strong>Elan Yerləşdir</strong></a>
                     </div>
                 </div>
             </div>
