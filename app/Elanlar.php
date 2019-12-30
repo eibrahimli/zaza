@@ -9,7 +9,7 @@ class Elanlar extends Model
 {
     protected $fillable = [
         'title', 'price', 'category', 'email', 'info', 'photo', 'type', 'country', 'city', 'adress', 'status', 'name',
-        'tel'
+        'tel','seen','kind'
     ];
 
     public function cat() {

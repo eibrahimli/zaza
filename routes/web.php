@@ -7,7 +7,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'onlyadmin'], function () {
 
         Route::get('/', function () {
             return view('backend.index');
-        });
+        });        
 
         Route::get('ayarlar','AdminController@index')->name('admin.ayarlar');
         Route::post('ayarlar/{ayarlar}', 'AdminController@update');
@@ -47,15 +47,38 @@ Route::group(['prefix' => 'admin', 'middleware' => 'onlyadmin'], function () {
         View::composer(['backend/*'], 'App\Http\Controllers\AdminController@shareMenuToAllViews');
     });
 
-Route::get('/', 'SiteController@index');
+Route::group(['prefix' => 'main'], function () {
+    Route::get('/', 'SiteController@index');
+});
+
+Route::get('/', function() {
+    return view('cons');
+});
+
+Route::post('subcat','SiteController@getSubCat');
 
 Route::get('contact', 'ContactFormController@index');
 Route::post('contact', 'ContactFormController@create');
 Route::get('elan/{elan}-{slug}','SiteController@show');
 Route::get('elanlar', 'SiteController@elanlar')->name('elanlar');
 Route::get('elan/create', 'SiteController@elanCreate')->name('elanlar.create');
+Route::post('elan/store', 'SiteController@elanStore')->name('elanlar.store');
 Route::any('axtar', 'SiteController@elanAxtar');
 Route::get('elanlar/{asc}','SiteController@elanlarAsc')->name('elanlar.asc');
+Route::get('kateqoriya/{cat}-{slug}','SiteController@catIndex');
+Route::get('kateqoriya/{cat}-{slug}/asc','SiteController@catAscIndex')->name('kateqoriya.asc');
+Route::any('kateqoriya/axtar/{cat}', 'SiteController@katAxtar')->name('kateqoriya.axtar');
+Route::group(['prefix' => 'user', 'middleware' => 'auth'],function() {
+    Route::get('{user}','ProfileController@index')->name('user.index');
+    Route::get('{user}/edit','ProfileController@edit')->name('user.edit');
+    Route::patch('{user}', 'ProfileController@update')->name('user.update');
+    Route::get('{user}/sil', 'ProfileController@destroy')->name('user.destroy');
+    Route::get('{user}/elanedit/{elan}','ProfileController@elanedit')->name('user.elanedit');
+    Route::patch('{user}/elan/{elan}', 'ProfileController@elanUpdate')->name('user.elanUpdate');
+    Route::get('{user}/elansil/{elan}','ProfileController@elanSil')->name('user.elansil');
+    Route::get('{user}/elangallerysil/{elan}','ProfileController@elangallerysil')->name('user.elangallerysil');
+});
 
 Auth::routes();
+
 

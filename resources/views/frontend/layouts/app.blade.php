@@ -4,6 +4,7 @@
 <!-- Mirrored from delovoy.net/user/register by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 14 Jul 2019 09:01:16 GMT -->
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
@@ -75,22 +76,27 @@
                     <nav>
                         <ul class="upcase">
                             <li style="color:!important;"><a href="{{ url('/') }}"><strong>Ana Səhifə</strong></a></li>
+                            <li style="color:!important;"><a href="{{ url('/elanlar') }}"><strong>Bütün Elanlar</strong></a></li>
+                            @if(auth()->check())
+                                <li style="color:!important;"><a href="{{ url('/user/'.auth()->user()->id) }}"><strong>Profilim</strong></a></li>
+                            @endif
                             <li style="color:!important;"><a href="{{ url('contact') }}"><strong>Əlaqə</strong></a></li>
 
-                            <li style="color:!important;"><a href="{{ url('login') }}" data-fancybox="modal2"
-                                                             data-src="#insign"><strong>Giriş</strong></a></li>
-                            <li style="color:!important;"><a href="{{ url('register') }}"><strong>Qeydiyyat</strong></a>
-                            </li>
+                            @if(auth()->check() == false)
+                                <li style="color:!important;"><a href="{{ url('login') }}" data-fancybox="modal2"
+                                                                 data-src="#insign"><strong>Giriş</strong></a></li>
+                                <li style="color:!important;"><a href="{{ url('register') }}"><strong>Qeydiyyat</strong></a>
+                                </li>
+                            @endif
                         </ul>
                         <div class="mobile-menu-trigger">
                             <i></i>
                             <i></i>
                             <i></i>
                         </div>
-                        <form class="nocsrf short-search-form" action="{{ url('/') }}" method="post">
+                        <form class="short-search-form" action="{{ url('axtar') }}" method="post">
                             @csrf
-                            <input type="hidden" name="page" value="search"/>
-                            <input type="text" name="text" placeholder="Axtar" class="input-search"
+                            <input type="text" name="title" placeholder="Axtar" class="input-search"
                                    id="search-example">
                             <input type="submit" value="" class="submit-search">
                         </form>
@@ -145,7 +151,7 @@
     <div class="footer-main">
         <div class="container">
             <div class="footer-main__logo">
-                <a href="index.html"><img border="0" alt="Доска объявлений Delovoy"
+                <a href="{{ url('') }}"><img border="0" alt="Доска объявлений Delovoy"
                                           src="{{ asset('frontend/themes/violet/img/logo.jpeg') }}"/></a>
             </div>
 

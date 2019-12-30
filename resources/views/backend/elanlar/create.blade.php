@@ -74,7 +74,7 @@
 
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="exampleSelect2" class="control-label">Elan Növü</label>
+                                    <label for="exampleSelect2" class="control-label">Elan Tipi</label>
                                     <select multiple="" name="type" class="form-control" id="exampleSelect2">
                                         <option value="vip">Vip</option>
                                         <option value="adi">Adi</option>
@@ -86,7 +86,16 @@
 
                         <!-- col-md-6 -->
                         <div class="col-md-6 col-12 padd-top-20">
-
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="exampleSelect2" class="control-label">Elan Növü</label>
+                                    <select multiple="" name="kind" class="form-control" id="exampleSelect2">
+                                        <option selected disabled>Elan növünü seçin</option>
+                                        <option value="yeni">Yeni</option>
+                                        <option value="kohne">Köhnə</option>
+                                    </select>
+                                </div>
+                            </div>
                             <!-- col-md-12 -->
                             <div class="col-md-12">
                                 <div class="form-group">

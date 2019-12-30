@@ -31,6 +31,26 @@
                                 </div>
                             @enderror
                         </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="inputName" class="control-label">Üst Kateqoriya</label>
+                                <select class="js-example-basic-single form-control" name="top_category">
+                                    <option value="0" selected disabled>Kateqoriyanı seçin...</option>
+                                    @if(count($categories) > 0)
+
+                                        @foreach ($categories as $categorie)
+                                            <option value="{{ $categorie->id }}">{{ $categorie->az_name }}</option>
+                                        @endforeach
+
+                                    @endif
+                                </select>                                
+                            </div>
+                            @error('top_category')
+                                <div class="alert alert-warning" role="alert">
+                                    {{ $errors->first('top_category') }}
+                                </div>
+                            @enderror
+                        </div>
 
                         <div class="col-sm-12">
                             <div class="form-group">
@@ -81,6 +101,9 @@
 
 @section('js')
     <script>
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+        });
         $('input[type="text"]')[0].on('invalid', function(){
                 console.log('ok');
                 return this.setCustomValidity('Boş olmaz');

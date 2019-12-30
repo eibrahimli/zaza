@@ -76,9 +76,9 @@
                                                 </a>
                                                 <span class="item__date">июля 14, 2019</span>
                                                 <a style="text-decoration: none" href="{{ $elan->path() }}">
-                                                    {{ strlen($elan->title)>18 ? mb_substr(0,18,$elan->title).'...' : $elan->title }}</a>
+                                                    {{ strlen($elan->title)>18 ? mb_substr($elan->title,0,18).'...' : $elan->title }}</a>
                                                 <div class="item__text">
-                                                    <div>{{ strlen($elan->info)>50 ? mb_substr(0,50,$elan->info).'...' : $elan->info }}
+                                                    <div>{{ strlen($elan->info)>50 ? mb_substr($elan->info,0,50).'...' : $elan->info }}
                                                     </div>
                                                 </div>
                                                 <strong class="item__price">{{ $elan->price }}</strong>

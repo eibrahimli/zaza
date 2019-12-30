@@ -44,6 +44,25 @@
                             </div>
                             @enderror
                         </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="inputName" class="control-label">Üst Kateqoriya</label>
+                                <select class="js-example-basic-single form-control" name="top_category">                                    
+                                            <option value="0">Əsas Kateqoriya Et</option>
+                                    @if(count($categories) > 0)
+                                        @foreach ($categories as $categorie)
+                                            <option value="{{ $categorie->id }}" {{ $categorie->id == $category->top_category ? 'selected' : null }}>{{ $categorie->az_name }}</option>
+                                        @endforeach
+
+                                    @endif
+                                </select>                                
+                            </div>
+                            @error('top_category')
+                                <div class="alert alert-warning" role="alert">
+                                    {{ $errors->first('top_category') }}
+                                </div>
+                            @enderror
+                        </div>
 
                     </div>
                     <div class="row mrg-0">
@@ -65,7 +84,7 @@
                     <div class="col-12">
                         <div class="form-group">
                             <div class="text-center">
-                                <button type="submit" class="btn gredient-btn disabled">Əlavə Et</button>
+                                <button type="submit" class="btn gredient-btn disabled">Yenilə</button>
                             </div>
                         </div>
                     </div>
@@ -82,6 +101,9 @@
 
 @section('js')
     <script>
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+        });
         $('input[type="text"]')[0]
             .on('invalid', function(){
                 return this.setCustomValidity('Boş olmaz');

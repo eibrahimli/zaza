@@ -30,7 +30,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('backend.kateqoriyalar.create');
+        $categories = Category::orderby('id','desc')->get();
+        return view('backend.kateqoriyalar.create',compact('categories'));
     }
 
     /**
@@ -44,6 +45,7 @@ class CategoryController extends Controller
         $data = $request->validate([
             'az_name' => ['required','min:2'],
             'ru_name' => ['required','min:2'],
+            'top_category' => ['sometimes'],
             'icon' => ['required', 'file', 'image', 'mimes:jpeg,jpg,png,gif,svg']
         ]);
 
@@ -62,7 +64,7 @@ class CategoryController extends Controller
         }
 
         return back()->with('status', 'Kateqoriya əlavə edildi');
-    }
+    }   
 
 
     /**
@@ -73,7 +75,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('backend.kateqoriyalar.edit',compact('category'));
+        
+        $categories = Category::orderby('id','desc')->where('id','!=',$category->id)->get();
+        return view('backend.kateqoriyalar.edit',compact('category','categories'));
     }
 
     /**
@@ -89,6 +93,7 @@ class CategoryController extends Controller
         $data = $request->validate([
             'az_name' => ['required','min:2'],
             'ru_name' => ['required','min:2'],
+            'top_category' => ['sometimes'],
             'icon' => ['sometimes', 'file', 'image', 'mimes:jpeg,jpg,png,gif,svg']
         ]);
 

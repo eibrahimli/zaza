@@ -3,7 +3,42 @@
 @section('title',$setting->title.' | '.$cat->az_name.' Kateqoriyasına Aid Elanlar')
 
 @section('content')
-
+    <section class="carousel-section">
+        <div class="container">
+            <div class="carousel-section__ins">
+                <h2 class="h2-bottom-line"><a href="{{ $cat->path() }}"> {!! '<b style="color: green">'.ucfirst($cat->az_name).'</b>' !!} </a> Kateqoriyasının Vip Elanları</h2>
+                <p class="sub-h2-text">Aşağıda vip elanlar qeyd edilmiştir.</p>
+                <div class="carousel-wrp">
+                    <div class="carousel owl-carousel">
+                        @foreach($vipelanlar as $vipelan)
+                            <div class="item" id="">
+                                <a href="{{ $vipelan->path() }}"
+                                   class="item__photo"
+                                   style="background-image: url({{ asset('storage/'.$vipelan->photo) }})">
+                                </a>
+                                <div class="item__ins">
+                                    <div class="item__middle-desc">
+                                        <a href="{{ $vipelan->cat->path() }}"
+                                           class="item__cat">
+                                            <img src="{{ asset('storage/'.$vipelan->cat->icon) }}">
+                                        </a>
+                                        <span class="item__date">июля 14, 2019</span>
+                                        <a href="{{ $vipelan->path() }}"
+                                           class="item__title">{{ strlen($vipelan->title)>18 ? mb_substr($vipelan->title,0,18).'...' : $vipelan->title }}</a>
+                                        <div class="item__text">
+                                            <div>{{ strlen($vipelan->info)>50 ? mb_substr($vipelan->info,0,50).'...' : $vipelan->info }}
+                                            </div>
+                                        </div>
+                                        <strong class="item__price">{{ $vipelan->price }} azn</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <div class="col-wrp">
         <aside class="col-left">
             <form action="{{ url('kateqoriya/axtar/'.$cat->id) }}" method="post" class="l-search nocsrf" id="searchformblock" role="form">
@@ -80,9 +115,9 @@
                                                 </a>
                                                 <span class="item__date">июля 14, 2019</span>
                                                 <a style="text-decoration: none" href="{{ $elan->path() }}">
-                                                    {{ strlen($elan->title)>18 ? mb_substr(0,18,$elan->title).'...' : $elan->title }}</a>
+                                                    {{ strlen($elan->title)>18 ? mb_substr($elan->title,0,18).'...' : $elan->title }}</a>
                                                 <div class="item__text">
-                                                    <div>{{ strlen($elan->info)>50 ? mb_substr(0,50,$elan->info).'...' : $elan->info }}
+                                                    <div>{{ strlen($elan->info)>50 ? mb_substr($elan->info,0,50).'...' : $elan->info }}
                                                     </div>
                                                 </div>
                                                 <strong class="item__price">{{ $elan->price }}</strong>

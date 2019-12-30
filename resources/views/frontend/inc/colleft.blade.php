@@ -6,7 +6,9 @@
             <a href="{{ route('user.edit',auth()->id()) }}"><strong>{{ auth()->user()->flName }}</strong></a>
         </div>
         <ul>
-            <script type="text/javascript">$(".user_menu > :first-child").addClass("first");$(".user_menu > :last-child").addClass("last");</script>
+            <script type="text/javascript">
+                $(".user_menu > :first-child").addClass("first");$(".user_menu > :last-child").addClass("last");
+            </script>
             <ul class="user_menu">
                 <li class="opt_items active"><a href="{{ route('user.index',auth()->id()) }}">Elanlarım</a></li>
                 <li class="opt_account"><a href="{{ route('user.edit',auth()->id()) }}">Ayarlar</a></li>

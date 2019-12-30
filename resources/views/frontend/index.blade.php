@@ -12,10 +12,13 @@
           content="{{ $setting->keyw }}"/>
     <meta http-equiv="Cache-Control" content="no-cache"/>
     <meta http-equiv="Expires" content="Fri, Jan 01 1970 00:00:00 GMT"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <style
+
         type="text/css">button, input.submit, #btn_subscribe, .searchPaginationSelected, .tag-link.active, .searchbutton, .flashmessage-warning, .flashmessage-info, .flashmessage-ok, .ui-slider-handle, .qq-upload-button, .edit-link:hover, .del-link:hover, #select-country__wrap .dropdown-wrapper, .btn-blue:hover, .lang-list__ul, .submit-search, .item__cat, .about-item__ico-wrp span, .item-inline__cat, .btn-pink, .item-tab-control a.active, .item-tab-control a:hover, .sort-btn.active {
             background-color: #7C4D9D !important;
         }
+
 
         a:hover, .item__favourites, .btn2, .breadcrumb a, .load-img-item span a, .profile-demo a, .options-form a, .modal a, .publish a {
             color: #7C4D9D !important;
@@ -91,6 +94,57 @@
           type="text/css"/>
     <link href="{{ asset('frontend/plugins/uMessages/assets/css/widgets.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('frontend/plugins/hfield/css/style.css') }}" rel="stylesheet" type="text/css"/>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <style rel="stylesheet">
+
+        .dropdown-submenu {
+            position: relative;
+        }
+
+        .dropdown-submenu>.dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -6px;
+            margin-left: -1px;
+            -webkit-border-radius: 0 6px 6px 6px;
+            -moz-border-radius: 0 6px 6px;
+            border-radius: 0 6px 6px 6px;
+        }
+
+        .dropdown-submenu:hover>.dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-submenu>a:after {
+            display: block;
+            content: " ";
+            float: right;
+            width: 0;
+            height: 0;
+            border-color: transparent;
+            border-style: solid;
+            border-width: 5px 0 5px 5px;
+            border-left-color: #ccc;
+            margin-top: 5px;
+            margin-right: -10px;
+        }
+
+        .dropdown-submenu:hover>a:after {
+            border-left-color: #fff;
+        }
+
+        .dropdown-submenu.pull-left {
+            float: none;
+        }
+
+        .dropdown-submenu.pull-left>.dropdown-menu {
+            left: -100%;
+            margin-left: 10px;
+            -webkit-border-radius: 6px 0 6px 6px;
+            -moz-border-radius: 6px 0 6px 6px;
+            border-radius: 6px 0 6px 6px;
+        }
+    </style>
     <link href="{{ asset('frontend/plugins/rupayments/css/ultimate.css') }}" rel="stylesheet" type="text/css"/>
     <script src="{{ asset('frontend/themes/violet/js/jquery.min.js') }}"></script>
     <script src="{{ asset('frontend/plugins/rupayments/js/ultimate.js') }}"></script>
@@ -147,22 +201,27 @@
                     <nav>
                         <ul class="upcase">
                             <li style="color:!important;"><a href="{{ url('/') }}"><strong>Ana Səhifə</strong></a></li>
+                            <li style="color:!important;"><a href="{{ url('/elanlar') }}"><strong>Bütün Elanlar</strong></a></li>
+                            @if(auth()->check())
+                                <li style="color:!important;"><a href="{{ url('/user/'.auth()->user()->id) }}"><strong>Profilim</strong></a></li>
+                            @endif
                             <li style="color:!important;"><a href="{{ url('contact') }}"><strong>Əlaqə</strong></a></li>
 
-                            <li style="color:!important;"><a href="{{ url('login') }}" data-fancybox="modal2"
-                                                             data-src="#insign"><strong>Giriş</strong></a></li>
-                            <li style="color:!important;"><a href="{{ url('register') }}"><strong>Qeydiyyat</strong></a>
-                            </li>
+                            @if(auth()->check() == false)
+                                <li style="color:!important;"><a href="{{ url('login') }}" data-fancybox="modal2"
+                                                                 data-src="#insign"><strong>Giriş</strong></a></li>
+                                <li style="color:!important;"><a href="{{ url('register') }}"><strong>Qeydiyyat</strong></a>
+                                </li>
+                            @endif
                         </ul>
                         <div class="mobile-menu-trigger">
                             <i></i>
                             <i></i>
                             <i></i>
                         </div>
-                        <form class="nocsrf short-search-form" action="{{ url('/') }}" method="post">
+                        <form class="nocsrf short-search-form" action="{{ url('axtar') }}" method="post">
                             @csrf
-                            <input type="hidden" name="page" value="search"/>
-                            <input type="text" name="text" placeholder="Axtar" class="input-search"
+                            <input type="text" name="title" placeholder="Axtar" class="input-search"
                                    id="search-example">
                             <input type="submit" value="" class="submit-search">
                         </form>
@@ -177,88 +236,31 @@
             <!--/.  Menu -->
             <div class="header__ins">
                 <div class="container">
-                    <!--Header Text -->
-                    <h1 class="upcase"><a href="index.html" title="Reklam Xidməti">Reklam Xidməti</a></h1>
-                    <p class="sub-h1-text"><a href="index.html" title="Pulsuz Reklam">Pulsuz Reklam</a>
-                        <!--Banner №1 -->
-                    <p>
-
-                    </p>
-                    <!---/. Header Text -->
-                    <form class="nocsrf form" action="index.php" method="post">
-                        <input type="hidden" name="page" value="search"/>
+                    <form action="{{ url('axtar') }}" method="post">
+                        @csrf
                         <div class="input-row">
-                            <div style="visibility: hidden" class="input-4-col middlesearch">
-                                    <select style="display:none;" name="category" id="sCategory" class="form-select-2"
-                                    data-placeholder="Kateqoriya Seçin...">
-                                        @foreach($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->{ app()->getLocale().'_name'} }}</option>
-                                        @endforeach
-                                    </select>
-                            </div>
-                            <div class="input-4-col middlesearch">
-                                <select name="category" id="sCategory" class="form-select-2"
+                            <div class="input-3-col middlesearch" id="cat">
+                                <select required title="Kateqoriya seç" oninvalid="this.setCustomValidity('Kateqoriya seçin')" name="category" onchange="this.setCustomValidity('')" id="category" class="form-select-2"
                                         data-placeholder="Kateqoriya Seçin...">
+                                    <option value="" disabled selected>Kateqoriya Seçin...</option>
                                     @foreach($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->{ app()->getLocale().'_name'} }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="input-4-col middlesearch dislast">
+                            <div class="input-3-col middlesearch dislast">
                                 <div class="form-search-action">
-                                    <input type="text" name="sPattern" placeholder="Elan Axtar" class="input-search">
+                                    <input type="text" name="city" placeholder="Şəhər" class="input-search">
+                                </div>
+                            </div>
+                            <div class="input-3-col middlesearch dislast">
+                                <div class="form-search-action">
+                                    <input type="text" name="title" placeholder="Elan Axtar" class="input-search">
                                     <input type="submit" value="" class="submit-search">
                                 </div>
                             </div>
                         </div>
                     </form>
-                    <script>
-                        $(document).ready(function () {
-                            $("body").on("change", "#sRegion", function () {
-                                var pk_c_code = $(this).val();
-                                var url = 'index86b7.html?page=ajax&amp;action=cities&amp;regionId=' + pk_c_code;
-                                var result = '';
-                                if (pk_c_code != '') {
-                                    $("#sCity").show();
-                                    $.ajax({
-                                        type: "GET",
-                                        url: url,
-                                        dataType: 'json',
-                                        success: function (data) {
-                                            var length = data.length;
-                                            if (length > 0) {
-                                                result += '<option selected value="">Выбрать город</option>';
-                                                for (key in data) {
-                                                    result += '<option value="' + data[key].pk_i_id + '">' + data[key].s_name + '</option>';
-                                                }
-                                                $("#city").before('<select name="sRegion" id="sRegion" ></select>');
-                                                $("#city").remove();
-                                            } else {
-                                                result += '<option value="">Нет результата</option>';
-                                                $("#sCity").before('<select name="sCity" id="sCity" ></select>');
-                                                $("#sCity").remove();
-                                                $("#sCity").hide();
-                                            }
-                                            $("#sCity").html(result);
-                                        }
-                                    });
-                                } else {
-                                    $("#sCity").hide();
-                                }
-                            });
-                            if ($("#sRegion").val() == '') {
-                                $('#sCity').prop('disabled', true);
-                            }
-                            $('#sRegion').change(function () {
-                                if ($(this).val() == '') {
-                                    $('#sCity').prop('disabled', true);
-                                } else {
-                                    $('#sCity').prop('disabled', false);
-                                }
-                            });
-                        });
-                    </script>
-                    <!--Categories -->
                     <div class="category-inline">
                         @foreach($categories as $category)
                             <a href="{{ $category->path() }}" class="category-inline-item">
@@ -284,7 +286,7 @@
                         <div class="carousel owl-carousel">
                             @foreach($vipelanlar as $vipelan)
                                 <div class="item">
-                                <a href="podarki/prinadlezhnosti-dlya-spirtnogo-i-aksessyary/globys-bar-napolnyj-so-stolikom-zoffoli_i822.html"
+                                <a href="{{ $vipelan->path() }}"
                                    class="item__photo"
                                    style="background-image: url({{ url('storage/'.$vipelan->photo) }})">
                                     <span class="item__favourites"><i class="mdi mdi-star-outline"></i></span>
@@ -297,13 +299,13 @@
                                         </a>
                                         <span class="item__date">июля 4, 2019</span>
                                         <a href="{{ $vipelan->path() }}"
-                                           class="item__title">{{ strlen($vipelan->title) > 20 ? mb_substr(0,20,$vipelan->title)."..." : $vipelan->title}}</a>
+                                           class="item__title">{{ strlen($vipelan->title) > 20 ? mb_substr($vipelan->title,0,20)."..." : $vipelan->title}}</a>
                                         <div class="item__text">
                                             <div>
-                                                {{ strlen($vipelan->info) > 68 ? mb_substr(0,68,$vipelan->info)."..." : $vipelan->info}}
+                                                {{ strlen($vipelan->info) > 68 ? mb_substr($vipelan->info,0,68)."..." : $vipelan->info}}
                                             </div>
                                         </div>
-                                        <strong class="item__price">10500.00 AZN</strong>
+                                        <strong class="item__price">{{ $vipelan->price }} AZN</strong>
                                     </div>
                                 </div>
                             </div>
@@ -324,24 +326,63 @@
                             @foreach($sonelanlar as $sonelan)
                                 <div class="item-wrp">
                                     <div class="item">
-                                        <a href="biznes/kreditovanie/predlozhit-kredit-vsem-kto-zainteresovan_i923.html"
+                                        <a href="{{ $sonelan->path() }}"
                                            class="item__photo"
                                            style="background-image: url({{ url('storage/'.$sonelan->photo) }})">
                                         </a>
                                         <div class="item__ins" id="normal">
                                             <div class="item__middle-desc">
-                                                <a href="biznes/kreditovanie/predlozhit-kredit-vsem-kto-zainteresovan_i923.html"
+                                                <a href="{{ $sonelan->cat->path() }}"
                                                    class="item__cat">
                                                     <img src="{{ url('storage/'.$sonelan->cat->icon) }}">
                                                 </a>
                                                 <span class="item__date">июля 12, 2019</span>
-                                                <a href="biznes/kreditovanie/predlozhit-kredit-vsem-kto-zainteresovan_i923.html"
-                                                   class="item__title">{{ strlen($sonelan->title)>18 ? mb_substr(0,18,$sonelan->title).'...' : $sonelan->title }}</a>
+                                                <a href="{{ $sonelan->path() }}"
+                                                   class="item__title">{{ strlen($sonelan->title)>18 ? mb_substr($sonelan->title,0,18).'...' : $sonelan->title }}</a>
                                                 <div class="item__text">
-                                                    <div>{{ strlen($sonelan->info)>68 ? mb_substr(0,68,$sonelan->info).'...' : $sonelan->info }}
+                                                    <div>{{ strlen($sonelan->info)>68 ? mb_substr($sonelan->info,0,68).'...' : $sonelan->info }}
                                                     </div>
                                                 </div>
                                                 <strong class="item__price">{{ $sonelan->price }} azn</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="board-list">
+            <div class="container">
+                <h2 class="h2-bottom-line">Populyar Elanlar</h2>
+                <div class="list-item">
+                    <div class="list-item__table active">
+                        <div class="list ">
+
+                            @foreach($populyarelanlar as $populyarelan)
+                                <div class="item-wrp">
+                                    <div class="item">
+                                        <a href="{{ $populyarelan->path() }}"
+                                           class="item__photo"
+                                           style="background-image: url({{ url('storage/'.$populyarelan->photo) }})">
+                                        </a>
+                                        <div class="item__ins" id="normal">
+                                            <div class="item__middle-desc">
+                                                <a href="{{ $populyarelan->cat->path() }}"
+                                                   class="item__cat">
+                                                    <img src="{{ url('storage/'.$populyarelan->cat->icon) }}">
+                                                </a>
+                                                <span class="item__date">июля 12, 2019</span>
+                                                <a href="{{ $populyarelan->path() }}"
+                                                   class="item__title">{{ strlen($populyarelan->title)>18 ? mb_substr($populyarelan->title,0,18).'...' : $populyarelan->title }}</a>
+                                                <div class="item__text">
+                                                    <div>{{ strlen($populyarelan->info)>68 ? mb_substr($populyarelan->info,0,68).'...' : $populyarelan->info }}
+                                                    </div>
+                                                </div>
+                                                <strong class="item__price">{{ $populyarelan->price }} azn</strong>
                                             </div>
                                         </div>
                                     </div>
@@ -364,8 +405,8 @@
                     <article class="footer-widget">
                         <h4>HAQQINDA</h4>
                         <p>
-                            <a title="Каталог компаний" href="biznes/kompanii/index.html" target="_blank">Каталог
-                                компаний</a>
+                            <!--<a title="Каталог компаний" href="biznes/kompanii/index.html" target="_blank">Каталог
+                                компаний</a>-->
                         </p>
                     </article>
                     <article class="footer-widget">
@@ -380,7 +421,7 @@
         <div class="footer-main">
             <div class="container">
                 <div class="footer-main__logo">
-                    <a href="index.html"><img border="0" alt="Доска объявлений Delovoy"
+                    <a href="{{ url('') }}"><img border="0" alt="Доска объявлений Delovoy"
                                               src="frontend/themes/violet/img/logo.jpeg"/></a>
                 </div>
 
@@ -396,5 +437,35 @@
             </div>
         </div>
     </footer>
+
+    <script>
+
+
+        {{--$(document).ready(function(){--}}
+        {{--    $.ajaxSetup({--}}
+        {{--        headers: {--}}
+        {{--            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
+        {{--        }--}}
+        {{--    });--}}
+        {{--    $('#category').on('change',function(){--}}
+        {{--        let id = $(this).val();--}}
+        {{--        $.ajax({--}}
+        {{--            method: 'post',--}}
+        {{--            url: "{{ url('subcat') }}",--}}
+        {{--            data: {'id': id},--}}
+        {{--            dataType: 'json',--}}
+        {{--            success: function(data) {--}}
+        {{--                if(data.length > 0) {--}}
+        {{--                    $('#cat').after('<div class="input-3-col middlesearch" id="data"><select name="elvir" class="form-select-2"></select></div>')--}}
+        {{--                    for(var i = 0; i<data.length; i++) {--}}
+        {{--                        $('#data select').append('<option>'+data[i]['az_name']+'</option>');--}}
+        {{--                    }--}}
+        {{--                }--}}
+        {{--            }--}}
+        {{--        });--}}
+        {{--    })--}}
+        {{--});--}}
+
+    </script>
 </body>
 </html>

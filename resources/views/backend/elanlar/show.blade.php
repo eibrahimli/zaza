@@ -226,7 +226,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="exampleSelect2" class="control-label col-sm-3">Elan Növü</label>
+                                <label for="exampleSelect2" class="control-label col-sm-3">Elan Tipi</label>
                                 <div class="col-sm-10">
                                     <select multiple="" name="type" class="form-control" id="exampleSelect2">
                                         <option value="vip" {{ $elan->type == 'vip' ? 'selected': null }}>Vip</option>
@@ -267,6 +267,22 @@
                                 @error('city')
                                     <div class="alert alert-warning" role="alert">
                                         {{ $errors->first('city') }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="exampleSelect2" class="control-label">Elan Növü</label>
+                                    <select multiple="" name="kind" class="form-control" id="exampleSelect2">
+                                        <option value="yeni" {{ $elan->kind == 'yeni' ? 'selected': null }}>Yeni</option>
+                                        <option value="kohne" {{ $elan->kind == 'kohne' ? 'selected': null }}>Köhnə</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                @error('kind')
+                                    <div class="alert alert-warning" role="alert">
+                                        {{ $message }}
                                     </div>
                                 @enderror
                             </div>

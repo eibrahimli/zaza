@@ -81,6 +81,7 @@ class ElanlarController extends Controller
             'name' => ['required','string'],
             'status' => ['required', 'integer'],
             'tel' => ['required'],
+            'kind' => ['required'],
             'photo' => ['required', 'file', 'image', 'mimes:jpeg,jpg,png,gif,svg'],
         ]);
 
@@ -152,12 +153,13 @@ class ElanlarController extends Controller
             'name' => ['required','string'],
             'status' => ['required', 'integer'],
             'tel' => ['required'],
+            'kind' => ['required'],
             'photo' => ['sometimes', 'file', 'image', 'mimes:jpeg,jpg,png,gif,svg'],
         ]);
 
         $request->validate([
-            'galery' => 'sometimes',
-            'galery.*' => 'file|image|mimes:jpg,png,gif,svg,jpeg',
+            'gallery' => 'sometimes',
+            'gallery.*' => 'file|image|mimes:jpg,png,gif,svg,jpeg',
         ]);
 
         $elan->update($data);
@@ -198,6 +200,9 @@ class ElanlarController extends Controller
      */
     public function destroy(Elanlar $elan)
     {
+        if(@$_COOKIE['seen']) {
+            setcookie('seen', '', time()-3600);
+        }
         Storage::delete('public/'.$elan->photo);
         $galleryies = ElanlarGalery::where('elanid',$elan->id)->get();
 

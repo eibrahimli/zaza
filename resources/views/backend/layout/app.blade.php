@@ -166,6 +166,7 @@
     @yield('js')
 
     <script>
+        
         $('.dropdown-toggle').dropdown()
     </script>
 
