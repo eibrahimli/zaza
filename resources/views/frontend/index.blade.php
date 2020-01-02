@@ -421,8 +421,8 @@
         <div class="footer-main">
             <div class="container">
                 <div class="footer-main__logo">
-                    <a href="{{ url('') }}"><img border="0" alt="Доска объявлений Delovoy"
-                                              src="frontend/themes/violet/img/logo.jpeg"/></a>
+                    <a href="{{ url('') }}">
+                        <img border="0" alt="Доска объявлений Delovoy" src="frontend/themes/violet/img/logo.jpeg"/></a>
                 </div>
 
                 <div class="footer__contacts">

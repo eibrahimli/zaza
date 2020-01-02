@@ -18,22 +18,21 @@ class SiteController extends Controller
         //dd(Category::with('categories')->get());
         $vipelanlar = Elanlar::orderby('id','desc')->where('status',1)->where('type','vip')->get();
         $sonelanlar = Elanlar::orderby('id', 'desc')->where('status', 1)->where('type','adi')->take(12)->get();
-        $populyarelanlar = Elanlar::orderby('seen', 'desc')->where('status', 1)->take(12)->get();
-        $categories = Category::orderby('id','desc')->where('category_id', 0)->get();
+        $populyarelanlar = Elanlar::orderby('seen', 'desc')->where('status', 1)->take(12)->get();        
 
-        $cattegories = Category::whereNull('category_id')->with('childrenCategories')->get();
+        $categories = Category::whereNull('category_id')->with('childrenCategories')->get();
 
-        foreach ($cattegories as $categoryy) {
-            echo $categoryy->id.'  <br>';
-            foreach ($categoryy->childrenCategories as $categorrr) {
-                echo $categorrr->id.'  ';
-                foreach ($categorrr->childrenCategories as $cat) {
-                    echo $cat->id.'<br>';
-                }
-            }            
-        }
+        // foreach ($cattegories as $categoryy) {
+        //     echo $categoryy->id.'  <br>';
+        //     foreach ($categoryy->childrenCategories as $categorrr) {
+        //         echo $categorrr->id.'  ';
+        //         foreach ($categorrr->childrenCategories as $cat) {
+        //             echo $cat->id.'<br>';
+        //         }
+        //     }            
+        // }
 
-        dd('kk');
+        // dd('kk');
         return view('frontend.index',compact('vipelanlar','sonelanlar','categories','populyarelanlar'));
     }
 
@@ -203,7 +202,7 @@ class SiteController extends Controller
     }
 
     private function getCategories() {
-        return Category::orderby('id','desc')->where('top_category',0)->get();
+        return Category::whereNull('category_id')->with('childrenCategories')->get();
     }
 
 
