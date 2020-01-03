@@ -92,7 +92,7 @@ class SiteController extends Controller
 
         $elanlar = $elan->where('status',1)->orderby('id','desc')->paginate(18)->appends(['title'=>$request->title]);
 
-        return view('frontend.elanlar.search',compact('elanlar','categories'));
+        return view('frontend.elanlar.search',compact('elanlar','categories','request'));
 
     }
 
@@ -189,7 +189,7 @@ class SiteController extends Controller
 
         $elanlar = $elan->where('category',$cat->id)->where('status',1)->orderBy('id','desc')->paginate(18)->appends(['title'=>$request->title]);
 
-        return view('frontend.kateqoriyalar.search',compact('elanlar','cat'));
+        return view('frontend.kateqoriyalar.search',compact('elanlar','cat','request'));
     }
 
     public function getSubCat(Request $request) {

@@ -4,6 +4,10 @@
 
 @section('content')
 
+    @section('breadcrumbli')
+        <li class="last-child" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"> » <span itemprop="title">Əlaqə Səhifəsi</span></li>
+    @endsection
+
     <h2 class="h2-bottom-line" style="font-family: sans-serif">Bizimlə Əlaqə</h2>
 
     <div id="feedback">

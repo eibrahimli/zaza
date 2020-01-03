@@ -3,7 +3,9 @@
 @section('title',$setting->title.' | '.'Bütün Elanlar')
 
 @section('content')
-
+    @section('breadcrumbli')
+        <li class="last-child" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"> » <span itemprop="title">Bütün Elanlar</span></li>
+    @endsection
     <div class="col-wrp">
         <aside class="col-left">
             <form action="{{ url('axtar') }}" method="post" class="l-search nocsrf" id="searchformblock" role="form">

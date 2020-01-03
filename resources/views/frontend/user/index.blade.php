@@ -3,7 +3,11 @@
 @section('title', $setting->title.' | '.ucfirst(auth()->user()->flName). ' istifadəçinin məlumatları')
 
 @section('content')
+    @section('breadcrumbli')
 
+        <li class="last-child" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"> » <span itemprop="title">Profilim</span></li>
+
+    @endsection
     <div class="col-wrp">
         @include('frontend.inc.colleft')
         <div class="col-main">

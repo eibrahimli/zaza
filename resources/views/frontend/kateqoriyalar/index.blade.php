@@ -3,6 +3,13 @@
 @section('title',$setting->title.' | '.$cat->az_name.' Kateqoriyasına Aid Elanlar')
 
 @section('content')
+    @section('breadcrumbli')
+
+        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"> » <a href="{{ route('elanlar') }}" itemprop="url"><span itemprop="title">Bütün Elanlar</span></a></li>            
+
+        <li class="last-child" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"> » <span itemprop="title">{{ $cat->az_name }} kateqoriyası</span></li>
+
+    @endsection
     <section class="carousel-section">
         <div class="container">
             <div class="carousel-section__ins">

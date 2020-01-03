@@ -194,7 +194,7 @@
                 <div class="container">
                     <div class="top-bar__logo-wrp">
                         <a href="{{ url('/') }}">
-                            <img border="0" alt="Доска объявлений Delovoy" src="frontend/themes/violet/img/logo2.jpeg"/>
+                            <img border="0" alt="Zaza.az Logosu" src="frontend/themes/violet/img/logo2.jpeg"/>
                         </a>
                     </div>
                     <!-- Menu -->

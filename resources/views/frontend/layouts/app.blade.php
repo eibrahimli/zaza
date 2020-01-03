@@ -111,16 +111,10 @@
             <!--/.  Menu -->
         </header>
         <div class="container" style="margin-top: 40px;">
+        
 
-{{--            <ul class="breadcrumb">--}}
-{{--                <li class="first-child" itemscope itemtype="http://data-vocabulary.org/Breadcrumb" ><a href="{{ url('/') }}" itemprop="url"><span itemprop="title">Zaza.az - Elan Saytı</span></a></li>--}}
-
-{{--                <li class="last-child" itemscope itemtype="http://data-vocabulary.org/Breadcrumb" > &raquo; <span itemprop="title">Yeni İstifadəçi Yarat</span></li>--}}
-{{--            </ul>--}}
             <div class="container">
-                <div class="forcemessages-inline">
-                </div>
-                <!-- content -->
+                @include('frontend.inc.breadcrumb')
                 @yield('content')
             </div>
             @yield('showElan')

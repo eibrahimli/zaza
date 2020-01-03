@@ -3,6 +3,13 @@
 @section("title", $setting->title." | ".$elan->title.' başlıqlı elan')
 
 @section('content')
+    @section('breadcrumbli')
+
+        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"> » <a href="{{ $elan->cat->path() }}" itemprop="url"><span itemprop="title">{{ $elan->cat->az_name }}</span></a></li>            
+
+        <li class="last-child" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"> » <span itemprop="title">{{ $elan->title }} elanı</span></li>
+
+    @endsection
     <div class="forcemessages-inline"></div>
     <div class="col-wrp">
         <div class="col-main">

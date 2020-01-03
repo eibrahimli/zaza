@@ -3,6 +3,13 @@
 @section('title',$setting->title.' | '.'Axtarılan Elanlar')
 
 @section('content')
+    @section('breadcrumbli')
+
+        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"> » <a href="{{ route('elanlar') }}" itemprop="url"><span itemprop="title">Bütün Elanlar</span></a></li>            
+
+        <li class="last-child" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"> » <span itemprop="title"><span style="color: red">{{ $request->title }}</span> başlıqlı elanlar</span></li>
+
+    @endsection
 
     <div class="col-wrp">
         <aside class="col-left">

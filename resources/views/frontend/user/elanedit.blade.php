@@ -3,7 +3,13 @@
 @section('title', $setting->title.' | '.$elan->title.' başlıqlı elanı yenilə')
 
 @section('content')
+    @section('breadcrumbli')
 
+        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"> » <a href="{{ route('user.index',auth()->id()) }}" itemprop="url"><span itemprop="title">Profilim</span></a></li>            
+
+        <li class="last-child" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"> » <span itemprop="title">{{ $elan->title }} elanını redaktə et</span></li>
+
+    @endsection
     <div class="publish">
         <h2 class="h2-bottom-line"><i><b>{{ ucfirst($elan->title) }}</b></i> Başlıqlı Elanı Yenilə</h2>
 

@@ -3,7 +3,13 @@
 @section('title', $setting->title.' | '.auth()->user()->flName.' istifadəçisinə aid məlumatlar')
 
 @section('content')
+    @section('breadcrumbli')
 
+        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"> » <a href="{{ route('user.index',auth()->id()) }}" itemprop="url"><span itemprop="title">Profilim</span></a></li>            
+
+        <li class="last-child" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"> » <span itemprop="title">{{ $user->flName }} istifadəçisini redaktə et</span></li>
+
+    @endsection
     <div class="col-wrp">
         @include('frontend.inc.colleft')
         <div class="col-main">
