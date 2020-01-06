@@ -3,6 +3,8 @@
 use GuzzleHttp\Psr7\Request;
 use function foo\func;
 
+Route::get('/lang/{lang}',['as' => 'lang.switch', 'uses' => "LanguageController@switchLang"]);
+
 Route::group(['prefix' => 'admin', 'middleware' => 'onlyadmin'], function () {
 
         Route::get('/', function () {
@@ -51,13 +53,15 @@ Route::group(['prefix' => 'main'], function () {
     Route::get('/', 'SiteController@index');
 });
 
+
+
 Route::get('/', function() {
     return view('cons');
 });
 
 Route::post('subcat','SiteController@getSubCat');
 
-Route::get('contact', 'ContactFormController@index');
+Route::get('contact', 'ContactFormController@index')->name('contact');
 Route::post('contact', 'ContactFormController@create');
 Route::get('elan/{elan}-{slug}','SiteController@show');
 Route::get('elanlar', 'SiteController@elanlar')->name('elanlar');

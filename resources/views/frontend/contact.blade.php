@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('tiitle', $setting->title.' | Bizimlə Əlaqə')
+@section('title', $setting->title.' | Bizimlə Əlaqə')
 
 @section('content')
 
@@ -26,7 +26,7 @@
                     @csrf
                     <div class="inp-group">
                         <h4 class="inp-group__title">Mövzu</h4>
-                        <input id="subject" name="subject" required pattern="[A-Za-zŞÜÖĞÇİşüöğçı ]{3,}" title="Ən azı 3 simvol olmalıdır.." type="text" value="" class="input">
+                        <input id="subject" name="subject" required pattern="[A-Za-z0-9ŞÜÖĞÇƏİşüöğçıə ]{3,}" title="Ən azı 3 simvol olmalıdır.." type="text" value="" class="input">
                     </div>
                     @error('subject')
                         <div class="inp-group">
@@ -37,7 +37,7 @@
                     @enderror
                     <div class="inp-group">
                         <h4 class="inp-group__title">Mesaj</h4>
-                        <textarea id="message" name="message" required pattern="[A-Za-zŞÜÖĞÇİşüöğçı ]{3,}" title="Ən azı 3 simvol olmalıdır.." type="text" value="" placeholder="Ətraflı..."></textarea>
+                        <textarea id="message" name="message" required type="text" value="" placeholder="Ətraflı..."></textarea>
                     </div>
 
                     @error('message')

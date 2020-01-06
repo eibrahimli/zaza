@@ -80,14 +80,14 @@
                             @if(auth()->check())
                                 <li style="color:!important;"><a href="{{ url('/user/'.auth()->user()->id) }}"><strong>Profilim</strong></a></li>
                             @endif
-                            <li style="color:!important;"><a href="{{ url('contact') }}"><strong>Əlaqə</strong></a></li>
-
                             @if(auth()->check() == false)
                                 <li style="color:!important;"><a href="{{ url('login') }}" data-fancybox="modal2"
                                                                  data-src="#insign"><strong>Giriş</strong></a></li>
                                 <li style="color:!important;"><a href="{{ url('register') }}"><strong>Qeydiyyat</strong></a>
                                 </li>
                             @endif
+                            <li style="color:!important;"><a href="{{ url('contact') }}"><strong>Əlaqə</strong></a></li>
+
                         </ul>
                         <div class="mobile-menu-trigger">
                             <i></i>
@@ -129,8 +129,7 @@
                 <article class="footer-widget">
                     <h4>HAQQINDA</h4>
                     <p>
-                        <a title="Каталог компаний" href="biznes/kompanii/index.html" target="_blank">Каталог
-                            компаний</a>
+                        <a title="Əlaqə Səhifəsi" href="{{ route('contact') }}" target="_blank">Əlaqə</a>
                     </p>
                 </article>
                 <article class="footer-widget">

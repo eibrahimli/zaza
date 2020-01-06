@@ -200,19 +200,19 @@
                     <!-- Menu -->
                     <nav>
                         <ul class="upcase">
-                            <li style="color:!important;"><a href="{{ url('/') }}"><strong>Ana Səhifə</strong></a></li>
-                            <li style="color:!important;"><a href="{{ url('/elanlar') }}"><strong>Bütün Elanlar</strong></a></li>
+                            <li style="color:!important;"><a href="{{ url('/') }}"><strong>{{ trans('frontend.home') }}</strong></a></li>                            
                             @if(auth()->check())
                                 <li style="color:!important;"><a href="{{ url('/user/'.auth()->user()->id) }}"><strong>Profilim</strong></a></li>
                             @endif
-                            <li style="color:!important;"><a href="{{ url('contact') }}"><strong>Əlaqə</strong></a></li>
-
+                        
                             @if(auth()->check() == false)
                                 <li style="color:!important;"><a href="{{ url('login') }}" data-fancybox="modal2"
-                                                                 data-src="#insign"><strong>Giriş</strong></a></li>
-                                <li style="color:!important;"><a href="{{ url('register') }}"><strong>Qeydiyyat</strong></a>
+                                                                 data-src="#insign"><strong>{{ trans('frontend.login') }}</strong></a></li>
+                                <li style="color:!important;"><a href="{{ url('register') }}"><strong>@lang('frontend.reg')</strong></a>
                                 </li>
                             @endif
+                            <li style="color:!important;"><a href="{{ url('contact') }}"><strong>@lang('frontend.contact')</strong></a></li>
+                            <li style="color:!important;"><a href="{{ app()->getLocale() == 'ru' ? url('lang/az') : url('lang/ru') }}"><strong>{{ app()->getLocale() == 'ru' ? 'Aзербайджанский' : 'Rusca' }}</strong></a></li>                            
                         </ul>
                         <div class="mobile-menu-trigger">
                             <i></i>
@@ -221,7 +221,7 @@
                         </div>
                         <form class="nocsrf short-search-form" action="{{ url('axtar') }}" method="post">
                             @csrf
-                            <input type="text" name="title" placeholder="Axtar" class="input-search"
+                            <input type="text" name="title" placeholder="{{ trans('frontend.searchTop') }}" class="input-search"
                                    id="search-example">
                             <input type="submit" value="" class="submit-search">
                         </form>
@@ -229,7 +229,7 @@
                     <div class="top-bar__action">
                         <a href="index.html" class="short-search-trigger"><i class="search-ico"></i></a>
 
-                        <a href="{{ route('elanlar.create') }}" class="btn-publish upcase"><strong>Elan Yerləşdir</strong></a>
+                        <a href="{{ route('elanlar.create') }}" class="btn-publish upcase"><strong>@lang('frontend.createElan')</strong></a>
                     </div>
                 </div>
             </div>

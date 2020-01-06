@@ -3,7 +3,11 @@
 @section('title', 'Qeydiyyatdan keç | '.$setting->title)
 
 @section('content')
+    @section('breadcrumbli')
+            
+        <li class="last-child" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"> » <span itemprop="title">Qeydiyyat</span></li>
 
+    @endsection
     <div class="publish">
         <h2 class="h2-bottom-line">Qeydiyyat</h2>
         <form id="register" class="form-publish" action="{{ route('register') }}" method="post" enctype="multipart/form-data">

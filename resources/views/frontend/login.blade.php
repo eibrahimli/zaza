@@ -2,6 +2,11 @@
 @section('title', $setting->title.' | Giriş  Səhifəsi')
 
 @section('content')
+    @section('breadcrumbli')
+        
+        <li class="last-child" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"> » <span itemprop="title">Giriş</span></li>
+
+    @endsection
 
     <div class="publish">
         <h2 class="h2-bottom-line">Sayta Giriş</h2>
